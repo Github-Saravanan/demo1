@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tomcat-sample
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tomcatinfra
+  template:
+    metadata:
+      labels:
+        app: tomcatinfra
+    spec:
+      containers:
+      - image: sarvananaa123/myapp
+        name: app
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-service
+spec:
+  selector:
+    app: tomcatinfra
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 8081
+      targetPort: 8080

@@ -13,7 +13,7 @@ spec:
         app: tomcatinfra
     spec:
       containers:
-      - image: sampleappln.azurecr.io/github-saravanan/demo1:40
+      - image: sampleappln.azurecr.io/github-saravanan/demo1::#{Build.BuildId}#
         name: app2
         ports:
         - containerPort: 8080

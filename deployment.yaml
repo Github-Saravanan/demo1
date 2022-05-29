@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: tomcat-sample
+  name: tomcatinfra
 spec:
   replicas: 1
   selector:
@@ -13,8 +13,9 @@ spec:
         app: tomcatinfra
     spec:
       containers:
-      - image: sarvananaa123/myapp
-        name: app
+      - image: sampleappln.azurecr.io/github-saravanan/demo1:39
+        ports:
+        - containerPort: 8080
 ---
 apiVersion: v1
 kind: Service
@@ -26,5 +27,5 @@ spec:
   type: LoadBalancer
   ports:
     - protocol: TCP
-      port: 8081
+      port: 8082
       targetPort: 8080
